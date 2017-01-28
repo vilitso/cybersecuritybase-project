@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Admin</title>
+    </head>
+    <body>
+        <h2>Admin </h2> 
+        <p><a href="/logout">Logout</a></p>
+        <p>Admin can delete notes here.</p>
+        
+        <h2>Notes people have shared:</h2>
+        
+        <table border='1'>
+        <tr>
+            <th>Nickname</th>
+            <th>Note</th>
+            <th>Action</th>
+        </tr>
+        <tr th:each="note : ${notes}">
+            <td th:utext="${note.nickname}"></td>
+            <td th:utext="${note.note}"></td>
+            <td>
+                <form th:action="@{/delete}" method="get">
+                    <input type="hidden" name='nickname' th:value="${note.nickname}" />
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+        </table>
+    </body>
+</html>

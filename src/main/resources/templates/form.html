@@ -1,18 +1,30 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>Sign up form</title>
+        <title>Save your notes</title>
     </head>
     <body>
-
-        <h1>Sign up to the event using this form</h1>
-
+        <p><a href="/admin">Admin</a></p>
+        
+        <h2>Save your notes for the world to see!</h2>
+        
         <form action="#" th:action="@{/form}" method="POST">
-            <p><label for="name">Name</label>: <input type="text" name="name" id="name"/></p>
-            <p><label for="address">Address</label>: <input type="text" name="address" id="address"/></p>
-            <p><input type="submit" value="Submit" /></p>
+            <p><label for="nickname">Nickname: </label><input type="text" name="nickname" id="nickname"/></p>
+            <p><label for="note">Note: </label><input type="text" name="note" id="note"/></p>
+            <p><input type="submit" value="Share" /></p>
         </form>
 
-        <p></p>
+        <h2>Notes people have shared:</h2>
+        
+        <table border='1'>
+        <tr>
+            <th>Nickname</th>
+            <th>Note</th>
+        </tr>
+        <tr th:each="note : ${notes}">
+            <td th:utext="${note.nickname}"></td>
+            <td th:utext="${note.note}"></td>
+        </tr>
+        </table>        
     </body>
 </html>
